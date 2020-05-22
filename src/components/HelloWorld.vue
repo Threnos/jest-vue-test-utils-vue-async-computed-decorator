@@ -6,7 +6,10 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import AsyncComputedPlugin from "vue-async-computed";
 import AsyncComputed from "vue-async-computed-decorator";
+
+Vue.use(AsyncComputedPlugin);
 
 @Component
 export default class HelloWorld extends Vue {
@@ -14,7 +17,8 @@ export default class HelloWorld extends Vue {
 
   @Prop() private msg!: string;
 
-  @AsyncComputed() async asyncComputedMethod() {
+  @AsyncComputed()
+  async asyncComputedMethod() {
     return new Promise(resolve => setTimeout(() => resolve("resolve"), 1000));
   }
 }
